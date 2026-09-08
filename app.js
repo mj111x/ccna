@@ -8,7 +8,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const img=(folder,name,alt='문제 이미지')=>`<img src="${ASSET}${folder}/${name}" alt="${alt}" loading="eager">`;
 function toast(text){const t=$('#toast');t.textContent=text;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),900)}
 
-Promise.all(['choices','labs','dnd'].map(name=>fetch(`public/data/${name}.json`).then(r=>{if(!r.ok)throw Error(name);return r.json()}))).then(([choice,lab,dnd])=>{
+Promise.all(['choices','labs','dnd'].map(name=>fetch(`data/${name}.json`).then(r=>{if(!r.ok)throw Error(name);return r.json()}))).then(([choice,lab,dnd])=>{
   bank={choice,lab,dnd};$('#loadState').textContent=`객관식 ${choice.length} · LAB ${lab.length} · D&D ${dnd.length} 준비 완료`;
   $$('.mode-card').forEach(b=>b.disabled=false);
 }).catch(()=>{$('#loadState').textContent='자료를 불러오지 못했습니다. START-WEB.cmd로 실행해 주세요.'});
