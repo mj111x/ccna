@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#081a2c">
+  <meta name="description" content="객관식, LAB, Drag & Drop을 한곳에서 연습하는 CCNA 모의시험">
+  <title>CCNA 모의시험</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="homeButton" class="brand" type="button" aria-label="시작 화면으로">CCNA <span>모의시험</span></button>
+    <div id="examStatus" class="exam-status hidden">
+      <span id="typeBadge" class="badge">문제</span>
+      <div class="progress-track" aria-label="진행률"><i id="progressBar"></i></div>
+      <span id="progressText">0%</span>
+    </div>
+    <button id="exitButton" class="ghost hidden" type="button">시험 종료</button>
+  </header>
+
+  <main>
+    <section id="startScreen" class="start-screen">
+      <div class="intro">
+        <p class="eyebrow">CCNA PRACTICE SET</p>
+        <h1>오늘 풀 유형을<br>고르세요.</h1>
+        <p>문항 번호표 없이 한 문제씩 진행합니다. 답을 고르면 다음 문제로 바로 넘어갑니다.</p>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-card featured" data-mode="mixed" type="button">
+          <span class="mode-icon">100</span><strong>종합 기출</strong>
+          <small>객관식 92 · LAB 4 · D&amp;D 4</small><em>매번 새 조합</em>
+        </button>
+        <button class="mode-card" data-mode="choice" type="button">
+          <span class="mode-icon">A</span><strong>문제만</strong>
+          <small>객관식 100문제 랜덤</small><em>선택 즉시 다음</em>
+        </button>
+        <button class="mode-card" data-mode="lab" type="button">
+          <span class="mode-icon terminal-icon">&gt;_</span><strong>실습만</strong>
+          <small>LAB 31문제 랜덤</small><em>명령어 입력</em>
+        </button>
+        <button class="mode-card" data-mode="dnd" type="button">
+          <span class="mode-icon">↕</span><strong>D&amp;D만</strong>
+          <small>Drag &amp; Drop 58문제</small><em>카드 배치</em>
+        </button>
+      </div>
+      <p id="loadState" class="load-state">문제 자료를 불러오는 중…</p>
+    </section>
+
+    <section id="examScreen" class="exam-screen hidden" aria-live="polite">
+      <div id="questionArea" class="question-area"></div>
+      <footer class="exam-footer">
+        <span id="answerHint">답을 선택하세요.</span>
+        <button id="submitButton" class="primary hidden" type="button">채점하고 다음</button>
+      </footer>
+    </section>
+
+    <section id="resultScreen" class="result-screen hidden">
+      <p class="eyebrow">SESSION COMPLETE</p>
+      <h1>연습 완료</h1>
+      <div class="score-ring"><strong id="scorePercent">0%</strong><span>정답률</span></div>
+      <div id="scoreDetails" class="score-details"></div>
+      <button id="againButton" class="primary" type="button">같은 유형 다시 풀기</button>
+      <button id="resultHomeButton" class="ghost" type="button">유형 선택</button>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
